@@ -1,11 +1,23 @@
 from django.db import models
+from django.db.models import CASCADE
 
 
-class Inventory(models.Model):
+class Items(models.Model):
     name = models.CharField(
         max_length=100,
         verbose_name='Название оборудования',
         unique=True
+    )
+    def __str__(self):
+        return f'{self.name}'
+
+
+class Inventory(models.Model):
+    name = models.ForeignKey(
+        Items,
+        max_length=100,
+        verbose_name='Название оборудования',
+        on_delete=CASCADE,
     )
     title = models.TextField(
         verbose_name='Полное название',

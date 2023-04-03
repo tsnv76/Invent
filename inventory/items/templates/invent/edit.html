@@ -1,0 +1,41 @@
+{% extends 'invent/base.html' %}
+{% load static %}
+
+{% block css %}
+<!--<link rel="stylesheet" type="text/css" href="{% static 'mainapp/style.css' %}">-->
+{% endblock %}
+
+{% block content %}
+{{ title }}
+
+		<table class="table table-hover" border=1 align="center">
+            <thead>
+            <tr>
+                <th scope="col">№</th>
+                <th scope="col">Название</th>
+                <th scope="col">Описание</th>
+                <th scope="col">Серийный номер</th>
+                <th scope="col">Дата передачи</th>
+                <th scope="col">Фамилия владельца</th>
+				<th scope="col">Место размещения</th>
+                <th scope="col">Редактировать</th>
+                <th scope="col">Удалить</th>
+            </tr>
+            </thead>
+
+            {% for item in items_list %}
+            <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.title }}</td>
+                <td>{{ item.serial }}</td>
+                <td>{{ item.create_at }}</td>
+                <td>{{ item.last_name_owner }}</td>
+				<td>{{ item.room }}</td>
+                <td><a href="/edit/" ><img style="text-align: right" src="../static/img/cogwheel.png" width="16"></a></td>
+                <td><a href="/delete/" ><img style="text-align: right" src="../static/img/delete.png" width="16"></a></td>
+            </tr>
+            {% endfor %}
+        </table>
+
+{% endblock %}
